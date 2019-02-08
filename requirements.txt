@@ -1,0 +1,9 @@
+uvloop
+aiohttp
+websockets
+aioinflux
+aionursery
+aioitertools
+iso8601
+copra
+numpy

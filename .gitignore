@@ -1,0 +1,10 @@
+.*.sw?
+*.py[co]
+__pycache__/
+.mypy_cache
+.project
+.pydevproject
+build/
+.eggs/
+.coverage
+*.egg-info/
