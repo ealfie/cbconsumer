@@ -25,7 +25,7 @@ setup(
     version='0.dev0+{}'.format(git_describe().replace('-', '.')),
     description='Coinbase trades consumer with a processor/sampler/aggregator pipeline',
     long_description='',
-    url='https://gitlab.com/ealfie/cbconsumer',
+    url='https://github.com/ealfie/cbconsumer',
     author='Ezequiel Alfie',
     license="?",
     author_email='ealfie@gmail.com',
