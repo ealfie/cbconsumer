@@ -2,40 +2,23 @@
 
 from setuptools import setup
 
-
-def git_describe():
-    from subprocess import Popen, PIPE
-    import os
-
-    if not os.path.isdir('.git'):
-        raise ValueError('.git not found. Be sure to be inside the git repository.')
-
-    try:
-        p = Popen(['git', 'describe', '--tags', '--dirty', '--always'], stdout=PIPE)
-    except EnvironmentError:
-        print('ERROR: unable to run git. Are you sure it is installed?')
-        raise
-
-    git_describe_stdout = p.communicate()[0].decode().strip()
-    return git_describe_stdout
+import versioneer
 
 
 setup(
     name='cbconsumer',
-    version='0.dev0+{}'.format(git_describe().replace('-', '.')),
+    version=versioneer.get_version(),
     description='Coinbase trades consumer with a processor/sampler/aggregator pipeline',
     long_description='',
+    packages=['cbconsumer'],
     url='https://github.com/ealfie/cbconsumer',
     author='Ezequiel Alfie',
-    license="?",
     author_email='ealfie@gmail.com',
+    license="?",
     classifiers=[
         'Environment :: Console',
         'Operating System :: Linux',
         'Programming Language :: Python',
-    ],
-    packages=[
-        'cbconsumer',
     ],
     install_requires=[
         'uvloop',
@@ -54,4 +37,6 @@ setup(
         'pytest-runner',
     ],
     scripts=['bin/cbconsumer'],
+    include_package_data=True,
+    cmdclass=versioneer.get_cmdclass(),
 )
