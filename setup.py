@@ -27,7 +27,7 @@ setup(
     long_description='',
     url='https://github.com/ealfie/cbconsumer',
     author='Ezequiel Alfie',
-    license="?",
+    license="AGPLv3",
     author_email='ealfie@gmail.com',
     classifiers=[
         'Environment :: Console',
