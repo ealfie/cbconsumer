@@ -53,5 +53,7 @@ setup(
     setup_requires=[
         'pytest-runner',
     ],
-    scripts=['bin/cbconsumer'],
+    entry_points = {
+        'console_scripts': ['cbconsumer=cbconsumer.app:main'],
+    }
 )
