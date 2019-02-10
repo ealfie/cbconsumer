@@ -29,6 +29,7 @@ setup(
         'aioinflux',
         'aioitertools',
         'iso8601',
+        'coloredlogs',
     ],
     tests_require=[
         'pytest',

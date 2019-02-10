@@ -7,3 +7,4 @@ aioitertools
 iso8601
 copra
 numpy
+coloredlogs
