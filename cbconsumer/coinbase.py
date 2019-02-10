@@ -385,8 +385,7 @@ class TradesGapsFiller:
 
                     self.last_tid = mtid
 
-            logger.info('%s: sending trade, id=%d',
-                         self._classname, tid)
+            logger.info('%s: sending trade, id=%d', self._classname, tid)
 
             await self.out_queue.put(this_trade)
             self.last_tid = tid
