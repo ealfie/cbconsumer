@@ -225,6 +225,7 @@ class BareCoinbaseFeed:
                         msg = await self._wait_msg_or_alarm(client)
                         element = self._msg_handler(msg)
                         if element is not None:
+                            logger.info('%s: inserting match msg into queue', self._classname)
                             await self.queue.put(element)
 
             # no heartbeat received
@@ -313,7 +314,7 @@ class BareCoinbaseFeed:
                          self._classname)
 
         elif data['type'] == 'subscriptions':
-            logger.debug('%s: subscription message received', self._classname)
+            logger.info('%s: subscription message received', self._classname)
             self._subscribed.set()
 
         else:
@@ -375,7 +376,7 @@ class TradesGapsFiller:
 
                 for t in missing_trades:
                     mtid = t['trade_id']
-                    logger.debug('%s: sending missing trade %d', self._classname, mtid)
+                    logger.info('%s: sending missed trade %d', self._classname, mtid)
 
                     if mtid != self.last_tid + 1:
                         raise AssertionError
@@ -384,7 +385,7 @@ class TradesGapsFiller:
 
                     self.last_tid = mtid
 
-            logger.debug('%s: sending this trade, id=%d',
+            logger.info('%s: sending trade, id=%d',
                          self._classname, tid)
 
             await self.out_queue.put(this_trade)

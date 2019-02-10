@@ -6,6 +6,7 @@ import argparse
 from functools import partial
 
 from aionursery import Nursery
+import coloredlogs
 
 from .utils import json_dumps
 from .async_utils import AsyncApp, queue_monitor
@@ -73,13 +74,15 @@ class CBConsumerApp(AsyncApp):
 
 
 def setup_logger(loglevel=logging.INFO):
-    logformat = "[%(asctime)s.%(msecs)03d] %(levelname)7s %(message)s"
-    logging.basicConfig(level=loglevel, format=logformat, stream=sys.stdout)
+    pkg_name = 'cbconsumer'
+    pkg_logger = logging.getLogger(pkg_name)
+    pkg_logger.setLevel(loglevel)
+    coloredlogs.install(level=loglevel, logger=pkg_logger, milliseconds=True)
 
 
 def parse_arguments(cmdline_args):
     parser = argparse.ArgumentParser()
-    parser.add_argument('--debug', '-d', action='store_true')
+    parser.add_argument('--loglevel', '-l', type=str, choices=('error', 'warning', 'info', 'debug'), default='info')
     parser.add_argument('--product-id', type=str, default='BTC-USD')
     parser.add_argument('--dollar-volume-slot', type=float, default=100.)
     args = parser.parse_args(cmdline_args)
@@ -88,7 +91,7 @@ def parse_arguments(cmdline_args):
 
 def main(cmdline_args=None):
     args = parse_arguments(cmdline_args)
-    loglevel = logging.DEBUG if args.debug else logging.INFO
+    loglevel = getattr(logging, args.loglevel.upper())
     setup_logger(loglevel)
     app = CBConsumerApp(product_id=args.product_id, dollar_volume_slot=args.dollar_volume_slot)
     app.run()

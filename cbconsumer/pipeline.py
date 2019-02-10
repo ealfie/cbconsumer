@@ -1,5 +1,6 @@
 import json
 import numbers
+import logging
 import datetime
 
 from operator import itemgetter
@@ -7,6 +8,9 @@ from functools import reduce
 
 from iso8601 import parse_date
 from aioitertools import groupby as agroupby
+
+
+logger = logging.getLogger(__name__)
 
 
 class SizeSplitter:
@@ -81,7 +85,9 @@ async def groupby_volume(it, *, volume_slot):
                            max_size=volume_slot)
 
     async for k, groups in agroupby(it, keyfunc):  # @UnusedVariable
-        yield list(groups)
+        batch = list(groups)
+        logger.debug('groupby_volume: yielding batch of %d trades', len(batch))
+        yield batch
 
 
 async def apply_aggregators(it, *, aggregators_defs):
