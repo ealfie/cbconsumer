@@ -13,6 +13,7 @@ setup(
     packages=['cbconsumer'],
     url='https://github.com/ealfie/cbconsumer',
     author='Ezequiel Alfie',
+    license="AGPLv3",
     author_email='ealfie@gmail.com',
     license="?",
     classifiers=[
