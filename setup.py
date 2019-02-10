@@ -31,6 +31,7 @@ setup(
         'iso8601',
     ],
     tests_require=[
+        'pytest',
         'pytest-cov',
     ],
     setup_requires=[
