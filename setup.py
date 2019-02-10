@@ -15,7 +15,6 @@ setup(
     author='Ezequiel Alfie',
     license="AGPLv3",
     author_email='ealfie@gmail.com',
-    license="?",
     classifiers=[
         'Environment :: Console',
         'Operating System :: Linux',
@@ -39,7 +38,7 @@ setup(
     ],
     entry_points = {
         'console_scripts': ['cbconsumer=cbconsumer.app:main'],
-    }
+    },
     include_package_data=True,
     cmdclass=versioneer.get_cmdclass(),
 )
