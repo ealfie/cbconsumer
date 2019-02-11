@@ -50,7 +50,7 @@ class CBConsumerApp(AsyncApp):
         # then it would be better to wrap the pipeline into a separate process
         # using aioprocessing.AioProcess
 
-        # NB: another possivility is using a push-type pipeline, like aiostream's
+        # NB: another possibility is using a push-type pipeline, like aiostream's
         src = queue_consumer(self.trade_queue)
         keysel = partial(select_keys, include=('time', 'size', 'price'))
 
